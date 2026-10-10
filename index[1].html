@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LOUMA SN — Marketplace Sénégal</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛍️</text></svg>">
+<style>
+:root{--n:#5a189a;--b:#7b2cbf;--c:#e83e8c;--bg:#fafafc;--w:#fff;--t:#111827;--m:#6b7280;--l:#e9e7ef;--r:18px;--o:#ff7a59}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Segoe UI,sans-serif;background:var(--bg);color:var(--t)}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}.hide{display:none!important}
+header{position:sticky;top:0;z-index:20;background:var(--n);color:#fff}.nav{max-width:1200px;margin:auto;padding:14px 18px;display:flex;gap:14px;align-items:center}
+.logo{background:none;color:#fff;font-size:25px;font-weight:900}.logo i{color:var(--c);font-style:normal}.search{flex:1}.search input{width:100%;padding:11px 14px;border-radius:11px;border:0}.nav button:not(.logo){background:transparent;color:#fff;padding:10px;border-radius:9px}
+main{max-width:1200px;margin:auto;padding:24px 18px 60px}.view{display:none}.view.on{display:block}
+.hero{padding:48px;border-radius:25px;background:linear-gradient(120deg,#5a189a,#7b2cbf,#ff7a59);color:#fff;display:grid;grid-template-columns:1.4fr .6fr;gap:30px}.hero h1{font-size:clamp(38px,6vw,64px);margin:14px 0}.hero p{font-size:18px;line-height:1.6;color:#e5eef8}.heroCard{padding:25px;background:#ffffff18;border:1px solid #ffffff30;border-radius:20px;align-self:center}
+.btn{padding:12px 16px;border-radius:10px;font-weight:800}.primary{background:linear-gradient(135deg,#e83e8c,#7b2cbf);color:#fff}.white{background:#fff;color:#5a189a}.outline{background:#fff;border:1px solid var(--l);color:var(--t)}.danger{background:#fff0f1;color:#c32d3e}
+.section{margin-top:30px}.head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:15px}.head h2{margin:0}.muted{color:var(--m)}
+.cats,.grid,.stats{display:grid;gap:14px}.cats{grid-template-columns:repeat(8,1fr)}.cat,.card,.panel,.stat{background:var(--w);border:1px solid var(--l);border-radius:var(--r);padding:17px;box-shadow:0 5px 20px #00000008}.cat{text-align:center;cursor:pointer}.cat b{display:block;font-size:28px;margin-bottom:7px}.grid{grid-template-columns:repeat(4,1fr)}.product{overflow:hidden;padding:0}.pic{height:170px;display:flex;align-items:center;justify-content:center;font-size:58px;background:linear-gradient(135deg,#fff0f7,#f1e8ff)}.product .body{padding:14px}.price{font-size:19px;font-weight:900;color:#5a189a}.actions{display:flex;gap:7px;margin-top:12px}.actions>*{flex:1}
+.form{max-width:650px;margin:20px auto}.field{margin:0 0 14px}.field label{display:block;font-weight:700;font-size:14px;margin-bottom:6px}.field input,.field select,.field textarea{width:100%;padding:12px;border:1px solid #d8dee8;border-radius:10px}.field textarea{min-height:90px}.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}.notice{padding:12px;border-radius:10px;background:#eaf8f2;color:#116a49;margin-bottom:15px}
+.stats{grid-template-columns:repeat(4,1fr)}.stat small{color:var(--m)}.stat strong{display:block;font-size:25px;margin-top:7px}.dash{display:grid;grid-template-columns:220px 1fr;gap:16px;margin-top:18px}.side{background:var(--n);padding:12px;border-radius:16px;height:max-content}.side button{width:100%;text-align:left;background:none;color:#dce7f4;padding:11px;border-radius:9px}.side button.active,.side button:hover{background:#ffffff15;color:#fff}
+.table{width:100%;border-collapse:collapse}.table th,.table td{padding:11px;border-bottom:1px solid var(--l);text-align:left;font-size:14px}.scroll{overflow:auto}
+.cart{display:flex;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--l)}.cart .grow{flex:1}.qty button{width:29px;height:29px;border-radius:7px;background:#edf1f6}.checkout{display:grid;grid-template-columns:1fr 330px;gap:16px}.total{font-size:23px;font-weight:900;border-top:1px solid var(--l);padding-top:12px}
+.modal{position:fixed;inset:0;background:#06162bb8;z-index:50;display:flex;align-items:center;justify-content:center;padding:18px}.box{background:#fff;border-radius:18px;max-width:650px;width:100%;max-height:90vh;overflow:auto;padding:24px}.modalHead{display:flex;justify-content:space-between}.close{background:#edf1f6;padding:8px;border-radius:8px}
+footer{background:var(--n);color:#dce6f2;text-align:center;padding:30px}.toast{position:fixed;right:18px;bottom:18px;background:var(--n);color:#fff;padding:13px 17px;border-radius:10px;transform:translateY(120px);transition:.25s;z-index:100}.toast.show{transform:translateY(0)}
+@media(max-width:900px){.cats{grid-template-columns:repeat(4,1fr)}.grid{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.dash,.checkout{grid-template-columns:1fr}}
+@media(max-width:600px){.nav{padding:10px}.search{display:none}main{padding:14px 10px}.hero{padding:27px 20px}.hero h1{font-size:40px}.cats{grid-template-columns:repeat(4,1fr);gap:7px}.cat{font-size:11px;padding:10px 3px}.grid{gap:9px}.pic{height:125px}.actions{flex-direction:column}.cols{grid-template-columns:1fr}.stats{gap:8px}.stat{padding:12px}}
+
+.badge{display:inline-block;padding:5px 9px;border-radius:99px;font-size:12px;font-weight:800;background:#edf1f6}
+.badge.ok{background:#e9f8f0;color:#126844}.badge.warn{background:#fff5df;color:#8b5b00}.badge.no{background:#ffecee;color:#b62536}
+.adminCard{min-height:130px}.switch{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:14px;border:1px solid var(--l);border-radius:12px;margin-bottom:10px}
+.switch input{width:20px;height:20px}.kpi{font-size:13px;color:var(--m)}.big{font-size:27px;font-weight:900;margin-top:5px}
+</style>
+</head>
+<body>
+<header><nav class="nav">
+<button class="logo" onclick="view('home')">LOUMA <i>SN</i></button>
+<div class="search"><input id="q" placeholder="Rechercher..." oninput="renderProducts()"></div>
+<button onclick="view('shops')">Boutiques</button><button onclick="view('orders')">Commandes</button><button onclick="adminLogin()">⚙️ Admin</button>
+<button onclick="view('cart')">🛒 <span id="count">0</span></button><button onclick="account()">👤 Compte</button>
+</nav></header>
+
+<main>
+<section id="home" class="view on">
+<div class="hero"><div><small>🇸🇳 Marketplace du Sénégal</small><h1>Le centre commercial numérique du Sénégal.</h1>
+<p>Découvrez des boutiques, achetez des produits et construisez votre propre boutique sur LOUMA SN.</p>
+<button class="btn white" onclick="register()">Créer ma boutique gratuitement</button>
+<button class="btn" style="background:#ffffff18;color:#fff" onclick="view('shops')">Découvrir</button></div>
+<div class="heroCard"><small>INSCRIPTION VENDEUR</small><h2>100% gratuite</h2><p>Votre boutique est en ligne en quelques minutes, sans frais.</p><button class="btn white" onclick="register()">Commencer</button></div></div>
+<div class="section"><div class="head"><h2>Catégories</h2></div><div id="cats" class="cats"></div></div>
+<div class="section"><div class="head"><h2>Produits recommandés</h2></div><div id="featured" class="grid"></div></div>
+</section>
+
+<section id="shops" class="view"><div class="head"><div><h2>Boutiques LOUMA SN</h2><div class="muted">Visitez les boutiques des vendeurs.</div></div><button class="btn primary" onclick="register()">Ouvrir ma boutique</button></div><div id="shopsGrid" class="grid"></div></section>
+<section id="detail" class="view"><button class="btn outline" onclick="view('shops')">← Retour</button><div id="detailBox" class="section"></div></section>
+<section id="orders" class="view"><div class="head"><h2>Mes commandes</h2></div><div id="ordersBox" class="panel"></div></section>
+<section id="cart" class="view"><div class="head"><h2>Mon panier</h2></div><div id="cartBox"></div></section>
+<section id="account" class="view"><div id="accountBox" class="panel form"></div></section>
+
+<section id="seller" class="view">
+<div class="head"><div><h2>Espace vendeur</h2><div id="welcome" class="muted"></div></div><button class="btn danger" onclick="logout()">Déconnexion</button></div>
+<div id="stats" class="stats"></div><div class="dash"><aside class="side"><button class="active" onclick="tab('home',this)">📊 Vue d'ensemble</button><button onclick="tab('products',this)">📦 Produits</button><button onclick="tab('orders',this)">🧾 Commandes</button><button onclick="tab('shop',this)">🏪 Ma boutique</button></aside><div id="sellerBox"></div></div>
+</section>
+
+<section id="admin" class="view">
+  <div class="head">
+    <div><h2>Administration LOUMA SN</h2><div class="muted">Centre de contrôle de la marketplace.</div></div>
+    <button class="btn danger" onclick="view('home')">Quitter</button>
+  </div>
+
+  <div class="stats" id="adminStats"></div>
+
+  <div class="dash">
+    <aside class="side">
+      <button class="active" onclick="adminTab('dashboard',this)">📊 Dashboard</button>
+      <button onclick="adminTab('sellers',this)">👥 Vendeurs</button>
+      <button onclick="adminTab('shops',this)">🏪 Boutiques</button>
+      <button onclick="adminTab('users',this)">🧑 Clients</button>
+      <button onclick="adminTab('products',this)">📦 Produits</button>
+      <button onclick="adminTab('orders',this)">🧾 Commandes</button>
+      <button onclick="adminTab('payments',this)">💳 Paiements</button>
+      <button onclick="adminTab('subscriptions',this)">💰 Abonnements</button>
+      <button onclick="adminTab('messages',this)">💬 Signalements</button>
+      <button onclick="adminTab('settings',this)">⚙️ Paramètres</button>
+    </aside>
+    <div id="adminBox"></div>
+  </div>
+</section>
+</main>
+
+
+
+<footer><b style="font-size:24px">LOUMA <i style="color:var(--c)">SN</i></b><p>Le centre commercial numérique du Sénégal.</p><small>Prototype : aucun paiement réel n'est effectué.</small></footer>
+
+<div id="modal" class="modal hide"><div class="box"><div class="modalHead"><h2 id="mt"></h2><button class="close" onclick="closeM()">✕</button></div><div id="mb"></div></div></div><div id="toast" class="toast"></div>
+
+<script>
+const cats=[['Mode','👕'],['Beauté','💄'],['Électronique','📱'],['Maison','🏠'],['Alimentation','🍔'],['Services','🔧'],['Produits numériques','💻'],['Autres','✨']];
+let shops=[],products=[],users=[],orders=[],buyerOrders=[],me=null,adminDirty=false,cart=JSON.parse(localStorage.loumaCart||'[]');
+let adminMode={subscriptionPaid:false,monthly:2000,annual:20000};
+async function api(path,method='GET',body,admin){
+const t=admin?sessionStorage.getItem('loumaAdminToken'):localStorage.getItem('loumaToken');
+const r=await fetch('/api'+path,{method,headers:{'Content-Type':'application/json',...(t?{Authorization:'Bearer '+t}:{})},body:body?JSON.stringify(body):undefined});
+const d=await r.json().catch(()=>({}));
+if(!r.ok){if(r.status===401){if(admin){sessionStorage.removeItem('loumaAdminToken');adminLogged=false}else{localStorage.removeItem('loumaToken');me=null}}throw new Error(d.error||'Erreur serveur')}
+return d}
+const guard=f=>async(...a)=>{try{return await f(...a)}catch(e){toast(e.message)}};
+async function boot(){try{const d=await api('/bootstrap');shops=d.shops;products=d.products;adminMode=d.settings}catch(e){toast('Serveur indisponible, réessayez.')}if(localStorage.loumaToken&&!me)await loadMe().catch(()=>{})}
+async function loadMe(){const d=await api('/me');me=d.me;orders=d.orders;products=products.filter(p=>p.shop!==me.shop).concat(d.products);const i=shops.findIndex(x=>x.id===d.shop.id);i<0?shops.push(d.shop):shops[i]=d.shop}
+const $=id=>document.getElementById(id), money=n=>new Intl.NumberFormat('fr-FR').format(n)+' FCFA', uid=p=>p+Date.now()+Math.random().toString(36).slice(2,6);
+function save(){localStorage.loumaCart=JSON.stringify(cart);$('count').textContent=cart.reduce((a,x)=>a+x.qty,0)}
+function esc(x){return String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function shopName(id){return shops.find(x=>x.id===id)?.name||'Boutique'}
+function view(id){if(id!=='admin'&&adminDirty){adminDirty=false;return boot().then(()=>view(id))}document.querySelectorAll('.view').forEach(x=>x.classList.remove('on'));$(id).classList.add('on');scrollTo(0,0);if(id==='home')home();if(id==='shops')renderShops();if(id==='orders')renderOrders();if(id==='cart')renderCart();if(id==='account')renderAccount();if(id==='seller')renderSeller()}
+function modal(t,b){$('mt').textContent=t;$('mb').innerHTML=b;$('modal').classList.remove('hide')}function closeM(){$('modal').classList.add('hide')}
+function toast(x){$('toast').textContent=x;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2500)}
+function register(){modal('Créer une boutique gratuitement',`<div class="notice">🎉 Dans cette version, l'inscription vendeur et l'ouverture de boutique sont gratuites.</div><form onsubmit="doRegister(event)">
+<div class="cols"><div class="field"><label>Nom complet *</label><input id="rn" required></div><div class="field"><label>Téléphone *</label><input id="rp" required placeholder="77 000 00 00"></div></div>
+<div class="field"><label>E-mail *</label><input id="re" type="email" required></div><div class="field"><label>Mot de passe *</label><input id="rpass" type="password" minlength="6" required></div>
+<div class="field"><label>Nom de la boutique *</label><input id="rs" required placeholder="Ex : Boutique Awa"></div><div class="cols"><div class="field"><label>Catégorie</label><select id="rc">${cats.map(x=>`<option>${x[0]}</option>`).join('')}</select></div><div class="field"><label>Ville</label><input id="rv" value="Dakar"></div></div>
+<div class="field"><label>Description</label><textarea id="rd"></textarea></div><button class="btn primary" style="width:100%">Créer mon compte et ma boutique</button></form><p class="muted">Déjà vendeur ? <button style="background:none;color:var(--b);font-weight:800" onclick="login()">Se connecter</button></p>`)}
+const doRegister=guard(async e=>{e.preventDefault();const d=await api('/register','POST',{name:$('rn').value,phone:$('rp').value,email:$('re').value,password:$('rpass').value,shopName:$('rs').value,category:$('rc').value,city:$('rv').value,description:$('rd').value});localStorage.loumaToken=d.token;me=null;await boot();closeM();toast('Boutique créée 🎉');view('seller')});
+function login(){modal('Connexion vendeur',`<form onsubmit="doLogin(event)"><div class="field"><label>E-mail</label><input id="le" type="email" required></div><div class="field"><label>Mot de passe</label><input id="lp" type="password" required></div><button class="btn primary" style="width:100%">Se connecter</button></form><p class="muted">Pas encore de boutique ? <button style="background:none;color:var(--b);font-weight:800" onclick="register()">Créer gratuitement</button></p>`)}
+const doLogin=guard(async e=>{e.preventDefault();const d=await api('/login','POST',{email:$('le').value,password:$('lp').value});localStorage.loumaToken=d.token;me=null;await boot();closeM();view('seller')});
+function logout(){localStorage.removeItem('loumaToken');me=null;orders=[];view('home');toast('Déconnexion réussie')}
+function account(){me?view('seller'):login()}
+function home(){$('cats').innerHTML=cats.map(x=>`<div class="cat" onclick="category('${x[0]}')"><b>${x[1]}</b>${x[0]}</div>`).join('');renderProducts('featured')}
+function renderProducts(target='featured'){let q=($('q').value||'').toLowerCase(),a=products.filter(p=>!q||p.name.toLowerCase().includes(q)||p.cat.toLowerCase().includes(q)||shopName(p.shop).toLowerCase().includes(q));if(target==='featured')a=a.slice(0,8);$(target).innerHTML=a.length?a.map(card).join(''):`<div class="panel" style="grid-column:1/-1;text-align:center">Aucun produit trouvé.</div>`}
+function card(p){return `<article class="card product"><div class="pic">${p.e}</div><div class="body"><small class="muted">${p.cat} · ${esc(shopName(p.shop))}</small><h3>${esc(p.name)}</h3><div class="price">${money(p.price)}</div><small class="muted">Stock : ${p.stock}</small><div class="actions"><button class="btn primary" onclick="add('${p.id}')">Ajouter</button><button class="btn outline" onclick="detail('${p.shop}')">Boutique</button></div></div></article>`}
+function category(c){view('shops');let a=products.filter(p=>p.cat===c);$('shopsGrid').innerHTML=`<div class="panel" style="grid-column:1/-1"><h2>${c}</h2><div class="grid" style="margin-top:15px">${a.map(card).join('')||'<p>Aucun produit.</p>'}</div></div>`}
+function renderShops(){$('shopsGrid').innerHTML=shops.filter(s=>!s.suspended).map(s=>`<article class="card"><div style="width:55px;height:55px;border-radius:14px;background:var(--n);color:#fff;display:flex;align-items:center;justify-content:center;font-size:23px;font-weight:900">${esc(s.name[0])}</div><h3>${esc(s.name)}</h3><div class="muted">${esc(s.category)} · ${esc(s.city||'Sénégal')}</div><p class="muted">${esc(s.description||'')}</p><button class="btn primary" style="width:100%" onclick="detail('${s.id}')">Visiter</button></article>`).join('')}
+function detail(id){let s=shops.find(x=>x.id===id);view('detail');$('detailBox').innerHTML=`<div class="panel"><h1>${esc(s.name)}</h1><p class="muted">${esc(s.category)} · ${esc(s.city||'Sénégal')}</p><p>${esc(s.description||'')}</p></div><div class="section"><h2>Produits</h2><div class="grid">${products.filter(p=>p.shop===id).map(card).join('')||'<div class="panel" style="grid-column:1/-1">Aucun produit dans cette boutique.</div>'}</div></div>`}
+function add(id){let p=products.find(x=>x.id===id);if(!p||p.stock<1)return toast('Produit indisponible');let i=cart.find(x=>x.product===id);i?i.qty++:cart.push({product:id,qty:1});save();toast('Produit ajouté au panier 🛒')}
+function renderCart(){if(!cart.length){$('cartBox').innerHTML='<div class="panel" style="text-align:center;padding:45px">🛒<h3>Panier vide</h3><button class="btn primary" onclick="view(\'shops\')">Continuer mes achats</button></div>';return}let total=0,html='<div class="checkout"><div>';cart.forEach(i=>{let p=products.find(x=>x.id===i.product);if(!p)return;total+=p.price*i.qty;html+=`<div class="panel cart"><div style="font-size:30px">${p.e}</div><div class="grow"><b>${esc(p.name)}</b><div class="muted">${money(p.price)}</div></div><div class="qty"><button onclick="qty('${p.id}',-1)">−</button> ${i.qty} <button onclick="qty('${p.id}',1)">+</button></div><b>${money(p.price*i.qty)}</b><button class="btn danger" onclick="removeItem('${p.id}')">✕</button></div>`});html+='</div><div class="panel"><h3>Résumé</h3><p>Livraison : <span class="muted">à confirmer avec le vendeur</span></p><div class="total">'+money(total)+'</div><button class="btn primary" style="width:100%;margin-top:14px" onclick="checkout()">Passer au paiement</button></div></div>';$('cartBox').innerHTML=html}
+function qty(id,d){let i=cart.find(x=>x.product===id);i.qty+=d;if(i.qty<1)cart=cart.filter(x=>x.product!==id);save();renderCart()}function removeItem(id){cart=cart.filter(x=>x.product!==id);save();renderCart()}
+function checkout(){modal('Finaliser la commande',`<div class="notice">Prototype : aucun paiement réel. Les options Wave, Orange Money, carte et paiement à la livraison sont simulées.</div><form onsubmit="place(event)"><div class="field"><label>Nom *</label><input id="cn" value="${esc(me?.name||'')}" required></div><div class="field"><label>Téléphone *</label><input id="cp" value="${esc(me?.phone||'')}" required></div><div class="field"><label>Adresse *</label><textarea id="ca" required></textarea></div><div class="field"><label>Paiement *</label><select id="pay"><option>Wave</option><option>Orange Money</option><option>Carte bancaire</option><option>Paiement à la livraison</option><option>Discussion avec le vendeur</option></select></div><button class="btn primary" style="width:100%">Confirmer la commande (simulation)</button></form>`)}
+const place=guard(async e=>{e.preventDefault();const d=await api('/orders','POST',{buyer:$('cn').value,phone:$('cp').value,address:$('ca').value,payment:$('pay').value,items:cart.map(i=>({product:i.product,qty:i.qty}))});localStorage.loumaMyOrders=JSON.stringify(JSON.parse(localStorage.loumaMyOrders||'[]').concat(d.orders.map(o=>o.id)));cart=[];save();closeM();toast('Commande enregistrée 🎉');await boot();view('orders')});
+async function renderOrders(){const ids=JSON.parse(localStorage.loumaMyOrders||'[]');try{buyerOrders=ids.length?(await api('/orders/lookup','POST',{ids})).orders:[]}catch(e){}
+if(!buyerOrders.length){$('ordersBox').innerHTML='<div style="text-align:center;padding:40px">Vous n’avez aucune commande.</div>';return}
+$('ordersBox').innerHTML='<div class="scroll"><table class="table"><tr><th>N°</th><th>Boutique</th><th>Total</th><th>Paiement</th><th>Statut</th></tr>'+buyerOrders.map(o=>`<tr><td>${esc(o.id)}</td><td>${esc(shopName(o.shop))}</td><td>${money(o.total)}</td><td>${esc(o.payment)}</td><td>${esc(o.status)}</td></tr>`).join('')+'</table></div>'}
+function renderAccount(){$('accountBox').innerHTML=me?`<h2>Mon compte vendeur</h2><p><b>${esc(me.name)}</b><br>${esc(me.email)}<br>${esc(me.phone)}</p><button class="btn primary" onclick="view('seller')">Mon espace vendeur</button> <button class="btn danger" onclick="logout()">Déconnexion</button>`:'<h2>Mon compte</h2><p>Connectez-vous ou créez votre boutique.</p><button class="btn primary" onclick="login()">Se connecter</button> <button class="btn outline" onclick="register()">Créer ma boutique</button>'}
+async function renderSeller(){if(!me)return view('home');await loadMe().catch(()=>{});if(!me)return view('home');let s=shops.find(x=>x.id===me.shop),ps=products.filter(p=>p.shop===me.shop),os=orders.filter(o=>o.shop===me.shop),ca=os.reduce((a,o)=>a+o.total,0);$('welcome').textContent=`${me.name} · ${s?.name||''}`;$('stats').innerHTML=`<div class="stat"><small>Produits</small><strong>${ps.length}</strong></div><div class="stat"><small>Commandes</small><strong>${os.length}</strong></div><div class="stat"><small>Chiffre d'affaires</small><strong>${money(ca)}</strong></div><div class="stat"><small>Commission 1%</small><strong>${money(ca*.01)}</strong></div>`;tab('home',document.querySelector('.side button'))}
+function tab(t,btn){document.querySelectorAll('.side button').forEach(x=>x.classList.remove('active'));btn?.classList.add('active');let ps=products.filter(p=>p.shop===me.shop),os=orders.filter(o=>o.shop===me.shop);if(t==='home')$('sellerBox').innerHTML=`<div class="panel"><h2>Bienvenue dans votre boutique</h2><p class="muted">Gérez vos produits, commandes et informations.</p><button class="btn primary" onclick="addProduct()">+ Ajouter un produit</button> <button class="btn outline" onclick="detail('${me.shop}')">Voir ma boutique</button></div>`;if(t==='products')$('sellerBox').innerHTML=`<div class="panel"><div class="head"><h2>Mes produits</h2><button class="btn primary" onclick="addProduct()">+ Ajouter</button></div><div class="scroll"><table class="table"><tr><th>Produit</th><th>Catégorie</th><th>Prix</th><th>Stock</th><th></th></tr>${ps.map(p=>`<tr><td>${p.e} ${esc(p.name)}</td><td>${esc(p.cat)}</td><td>${money(p.price)}</td><td>${p.stock}</td><td><button class="btn danger" onclick="delProduct('${p.id}')">Supprimer</button></td></tr>`).join('')}</table></div></div>`;if(t==='orders')$('sellerBox').innerHTML=`<div class="panel"><h2>Commandes reçues</h2><div class="scroll"><table class="table"><tr><th>N°</th><th>Client</th><th>Total</th><th>Statut</th></tr>${os.map(o=>`<tr><td>${o.id}</td><td>${esc(o.buyer)}<br>${esc(o.phone)}</td><td>${money(o.total)}</td><td><select onchange="setOrderStatus('${o.id}',this.value)"><option ${o.status==='En attente'?'selected':''}>En attente</option><option ${o.status==='Confirmée'?'selected':''}>Confirmée</option><option ${o.status==='Expédiée'?'selected':''}>Expédiée</option><option ${o.status==='Livrée'?'selected':''}>Livrée</option><option ${o.status==='Annulée'?'selected':''}>Annulée</option></select></td></tr>`).join('')}</table></div></div>`;if(t==='shop'){let s=shops.find(x=>x.id===me.shop);$('sellerBox').innerHTML=`<div class="panel"><h2>Ma boutique</h2><form onsubmit="updateShop(event)"><div class="field"><label>Nom</label><input id="sn" value="${esc(s.name)}" required></div><div class="field"><label>Catégorie</label><select id="sc">${cats.map(x=>`<option ${s.category===x[0]?'selected':''}>${x[0]}</option>`).join('')}</select></div><div class="field"><label>Ville</label><input id="sv" value="${esc(s.city||'Dakar')}"></div><div class="field"><label>Description</label><textarea id="sd">${esc(s.description||'')}</textarea></div><button class="btn primary">Enregistrer</button></form></div>`}}
+function addProduct(){modal('Ajouter un produit',`<form onsubmit="doProduct(event)"><div class="cols"><div class="field"><label>Nom *</label><input id="pn" required></div><div class="field"><label>Prix FCFA *</label><input id="pp" type="number" min="0" required></div></div><div class="cols"><div class="field"><label>Catégorie</label><select id="pc">${cats.map(x=>`<option>${x[0]}</option>`).join('')}</select></div><div class="field"><label>Stock</label><input id="pst" type="number" min="0" value="1"></div></div><div class="field"><label>Emoji</label><input id="pe" value="📦" maxlength="4"></div><div class="field"><label>Description</label><textarea id="pd"></textarea></div><button class="btn primary" style="width:100%">Ajouter</button></form>`)}
+const doProduct=guard(async e=>{e.preventDefault();const p=await api('/products','POST',{name:$('pn').value,price:+$('pp').value,cat:$('pc').value,stock:+$('pst').value,e:$('pe').value||'📦',desc:$('pd').value});products.push(p);closeM();toast('Produit ajouté');await renderSeller();tab('products',document.querySelectorAll('.side button')[1])});
+const delProduct=guard(async id=>{if(!confirm('Supprimer ce produit ?'))return;await api('/products/'+id,'DELETE');products=products.filter(p=>p.id!==id);await renderSeller();tab('products',document.querySelectorAll('.side button')[1])});
+const setOrderStatus=guard(async(id,s)=>{await api('/orders/'+id+'/status','PUT',{status:s});const o=orders.find(x=>x.id===id);if(o)o.status=s;toast('Statut mis à jour')});
+const updateShop=guard(async e=>{e.preventDefault();const s=await api('/shop','PUT',{name:$('sn').value,category:$('sc').value,city:$('sv').value,description:$('sd').value});const i=shops.findIndex(x=>x.id===s.id);if(i>=0)shops[i]=s;toast('Boutique mise à jour');renderSeller()});
+
+let adminLogged=!!sessionStorage.getItem('loumaAdminToken');
+
+function saveAdmin(){return api('/admin/settings','PUT',adminMode,true).catch(e=>toast(e.message))}
+function adminLogin(){
+  if(adminLogged){view('admin');renderAdmin();return}
+  modal('Administration LOUMA SN', `<div class="notice">Accès réservé à l'administrateur.</div>
+  <form onsubmit="doAdminLogin(event)">
+    <div class="field"><label>Identifiant</label><input id="ae" required></div>
+    <div class="field"><label>Mot de passe</label><input id="ap" type="password" required></div>
+    <button class="btn primary" style="width:100%">Ouvrir l'administration</button>
+  </form>`);
+}
+const doAdminLogin=guard(async e=>{e.preventDefault();const d=await api('/admin/login','POST',{username:$('ae').value,password:$('ap').value});sessionStorage.setItem('loumaAdminToken',d.token);adminLogged=true;closeM();view('admin');renderAdmin();toast('Administration ouverte')});
+async function loadAdmin(){try{const d=await api('/admin/data','GET',null,true);users=d.users;shops=d.shops;products=d.products;orders=d.orders;adminMode=d.settings;adminDirty=true}catch(e){adminLogged=false;adminLogin()}}
+async function renderAdmin(){
+  if(!adminLogged){return adminLogin()}
+  await loadAdmin();if(!adminLogged)return;
+  const revenue=orders.reduce((a,o)=>a+o.total,0), commission=revenue*.01;
+  $('adminStats').innerHTML=`
+  <div class="stat"><small>Vendeurs</small><strong>${users.length}</strong></div>
+  <div class="stat"><small>Boutiques</small><strong>${shops.length}</strong></div>
+  <div class="stat"><small>Commandes</small><strong>${orders.length}</strong></div>
+  <div class="stat"><small>Commission 1%</small><strong>${money(commission)}</strong></div>`;
+  adminTab('dashboard',document.querySelector('#admin .side button'));
+}
+function adminTab(t,btn){
+  document.querySelectorAll('#admin .side button').forEach(x=>x.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  const box=$('adminBox');
+  if(t==='dashboard') box.innerHTML=`
+    <div class="panel"><h2>Vue d'ensemble</h2>
+      <p>LOUMA SN est actuellement en <b>${adminMode.subscriptionPaid?'MODE PAYANT':'MODE LANCEMENT GRATUIT'}</b>.</p>
+      <div class="notice">${adminMode.subscriptionPaid?'Les nouveaux vendeurs doivent choisir un abonnement.':'Les vendeurs peuvent actuellement créer leur compte et leur boutique gratuitement.'}</div>
+      <button class="btn primary" onclick="adminTab('settings',document.querySelectorAll('#admin .side button')[9])">Gérer le mode d'inscription</button>
+    </div>`;
+  if(t==='sellers') box.innerHTML=`
+    <div class="panel"><div class="head"><h2>Vendeurs</h2><span class="badge">${users.length} compte(s)</span></div>
+    <div class="scroll"><table class="table"><tr><th>Nom</th><th>Email</th><th>Téléphone</th><th>Boutique</th><th>Action</th></tr>
+    ${users.map(u=>`<tr><td>${esc(u.name)}</td><td>${esc(u.email)}</td><td>${esc(u.phone)}</td><td>${esc(shopName(u.shop))}</td><td><button class="btn outline" onclick="adminOpenShop('${u.shop}')">Voir</button></td></tr>`).join('')||'<tr><td colspan="5">Aucun vendeur inscrit.</td></tr>'}</table></div></div>`;
+  if(t==='shops') box.innerHTML=`
+    <div class="panel"><div class="head"><h2>Boutiques</h2><span class="badge">${shops.length}</span></div>
+    <div class="scroll"><table class="table"><tr><th>Boutique</th><th>Vendeur</th><th>Catégorie</th><th>État</th><th>Action</th></tr>
+    ${shops.map(s=>`<tr><td>${esc(s.name)}</td><td>${esc(s.owner)}</td><td>${esc(s.category)}</td><td>${s.suspended?'<span class="badge no">Suspendue</span>':'<span class="badge ok">Active</span>'}</td><td><button class="btn danger" onclick="adminSuspend('${s.id}')">${s.suspended?'Réactiver':'Suspendre'}</button></td></tr>`).join('')}</table></div></div>`;
+  if(t==='users') box.innerHTML=`
+    <div class="panel"><h2>Utilisateurs</h2><p class="muted">Dans cette version locale, les comptes créés sont affichés ici. La vraie base de données sera branchée avec le backend.</p>
+    <div class="scroll"><table class="table"><tr><th>Nom</th><th>Email</th><th>Téléphone</th><th>Type</th></tr>
+    ${users.map(u=>`<tr><td>${esc(u.name)}</td><td>${esc(u.email)}</td><td>${esc(u.phone)}</td><td><span class="badge">Vendeur</span></td></tr>`).join('')}</table></div></div>`;
+  if(t==='products') box.innerHTML=`
+    <div class="panel"><h2>Produits</h2><div class="scroll"><table class="table"><tr><th>Produit</th><th>Boutique</th><th>Prix</th><th>Stock</th></tr>
+    ${products.map(p=>`<tr><td>${p.e} ${esc(p.name)}</td><td>${esc(shopName(p.shop))}</td><td>${money(p.price)}</td><td>${p.stock}</td></tr>`).join('')}</table></div></div>`;
+  if(t==='orders') box.innerHTML=`
+    <div class="panel"><h2>Toutes les commandes</h2><div class="scroll"><table class="table"><tr><th>N°</th><th>Boutique</th><th>Client</th><th>Total</th><th>Statut</th></tr>
+    ${orders.map(o=>`<tr><td>${o.id}</td><td>${esc(shopName(o.shop))}</td><td>${esc(o.buyer)}</td><td>${money(o.total)}</td><td>${esc(o.status)}</td></tr>`).join('')||'<tr><td colspan="5">Aucune commande.</td></tr>'}</table></div></div>`;
+  if(t==='payments'){
+    const rev=orders.reduce((a,o)=>a+o.total,0);
+    box.innerHTML=`<div class="panel"><h2>Paiements</h2><div class="stats">
+    <div class="stat"><small>Volume des commandes</small><strong>${money(rev)}</strong></div>
+    <div class="stat"><small>Commission LOUMA</small><strong>${money(rev*.01)}</strong></div>
+    <div class="stat"><small>Part vendeurs</small><strong>${money(rev*.99)}</strong></div>
+    <div class="stat"><small>Modes</small><strong>5</strong></div></div>
+    <p class="muted" style="margin-top:20px">Wave, Orange Money, carte, paiement à la livraison et discussion vendeur sont simulés dans cette version.</p></div>`;
+  }
+  if(t==='subscriptions') box.innerHTML=`
+    <div class="panel"><h2>Abonnements vendeurs</h2>
+    <div class="notice">${adminMode.subscriptionPaid?'🟢 La facturation est activée.':'🔵 La facturation est désactivée pendant le lancement.'}</div>
+    <div class="switch"><div><b>Abonnements payants</b><div class="muted">Active cette option lorsque LOUMA SN sera prêt.</div></div>
+    <input type="checkbox" ${adminMode.subscriptionPaid?'checked':''} onchange="toggleSubscriptions(this.checked)"></div>
+    <div class="cols"><div class="field"><label>Mensuel (FCFA)</label><input id="am" type="number" value="${adminMode.monthly}" onchange="adminMode.monthly=+this.value;saveAdmin()"></div>
+    <div class="field"><label>Annuel (FCFA)</label><input id="aa" type="number" value="${adminMode.annual}" onchange="adminMode.annual=+this.value;saveAdmin()"></div></div>
+    <p><b>Tarifs prévus :</b> ${money(adminMode.monthly)} / mois · ${money(adminMode.annual)} / an.</p></div>`;
+  if(t==='messages') box.innerHTML=`<div class="panel"><h2>Signalements & modération</h2><p class="muted">Cette zone recevra les signalements de produits, vendeurs et conversations lorsque le backend sera connecté.</p><div class="notice">Aucun signalement dans ce prototype.</div></div>`;
+  if(t==='settings') box.innerHTML=`
+    <div class="panel"><h2>Paramètres LOUMA SN</h2>
+    <div class="switch"><div><b>Inscription vendeur gratuite</b><div class="muted">À utiliser pendant la période de lancement.</div></div>
+    <strong>${adminMode.subscriptionPaid?'DÉSACTIVÉE':'ACTIVÉE'}</strong></div>
+    <div class="switch"><div><b>Passage au modèle payant</b><div class="muted">Une seule activation permettra d'appliquer les abonnements aux nouveaux vendeurs.</div></div>
+    <input type="checkbox" ${adminMode.subscriptionPaid?'checked':''} onchange="toggleSubscriptions(this.checked)"></div>
+    <div class="cols"><div class="field"><label>Tarif mensuel</label><input id="sm" type="number" value="${adminMode.monthly}" onchange="adminMode.monthly=+this.value;saveAdmin()"></div>
+    <div class="field"><label>Tarif annuel</label><input id="sa" type="number" value="${adminMode.annual}" onchange="adminMode.annual=+this.value;saveAdmin()"></div></div>
+    <button class="btn primary" onclick="saveAdmin();toast('Paramètres enregistrés')">Enregistrer les paramètres</button></div>`;
+}
+const toggleSubscriptions=guard(async v=>{adminMode.subscriptionPaid=v;await saveAdmin();renderAdmin();toast(v?'Mode payant activé':'Mode gratuit activé')});
+function adminOpenShop(id){closeM();detail(id)}
+const adminSuspend=guard(async id=>{const s=await api('/admin/shops/'+id+'/suspend','POST',null,true);toast(s.suspended?'Boutique suspendue':'Boutique réactivée');renderAdmin()});
+
+boot().then(()=>{home();save()});
+</script>
+</body>
+</html>
