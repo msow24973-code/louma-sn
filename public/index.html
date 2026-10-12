@@ -30,6 +30,12 @@ footer{background:var(--n);color:#dce6f2;text-align:center;padding:30px}.toast{p
 .adminCard{min-height:130px}.switch{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:14px;border:1px solid var(--l);border-radius:12px;margin-bottom:10px}
 .switch input{width:20px;height:20px}.kpi{font-size:13px;color:var(--m)}.big{font-size:27px;font-weight:900;margin-top:5px}
 </style>
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#5a189a">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Louma">
 </head>
 <body>
 <header><nav class="nav">
@@ -232,6 +238,7 @@ function adminOpenShop(id){closeM();detail(id)}
 const adminSuspend=guard(async id=>{const s=await api('/admin/shops/'+id+'/suspend','POST',null,true);toast(s.suspended?'Boutique suspendue':'Boutique réactivée');renderAdmin()});
 
 boot().then(()=>{home();save()});
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
 </script>
 </body>
 </html>
